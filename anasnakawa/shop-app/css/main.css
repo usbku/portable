@@ -1,0 +1,109 @@
+/*! HTML5 Boilerplate v4.3.0 | MIT License | http://h5bp.com/ */
+
+/**
+ * disable text selection
+ */
+
+body {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/**
+ * correcting select element placement
+ */
+
+.input-row label + select {
+    float: right;
+    width: 64%;
+    border-bottom: 0;
+    margin-bottom: 4px;
+    padding-left: 10px;
+    margin-right: 4px;
+    margin-top: 4px;
+}
+
+/**
+ * list & edit mode
+ */
+
+.list {
+    overflow: hidden;
+}
+
+.edit-action {
+    -webkit-transform: translateX(5rem);
+    -ms-transform: translateX(5rem);
+    -o-transform: translateX(5rem);
+    transform: translateX(5rem);
+    -webkit-transition: .3s;
+    -o-transition: .3s;
+    transition: .3s;
+}
+
+.edit-inverse {
+    opacity: 1;
+    transition: opacity .3s ease;
+}
+
+.edit .edit-action {
+    -webkit-transform: translateX(0);
+    -ms-transform: translateX(0);
+    -o-transform: translateX(0);
+    transform: translateX(0);
+}
+
+.edit .edit-inverse {
+    opacity: 0;
+}
+
+/**
+ * trim content area for the sake of total price
+ */
+.content {
+    bottom: 70px;
+}
+
+/**
+ * total price
+ */
+
+.total {
+    position: fixed;
+    bottom: 0;
+    height: 50px;
+    box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.4);
+    padding: 10px;
+    left: 0;
+    right: 0;
+}
+
+    .total-label {
+        font-size: 20px;
+        line-height: 20px;
+        margin-top: 10px;
+        margin-left: 10px;
+    }
+
+.price {
+    margin-right: 10px;
+    font-size: 40px;
+    line-height: 40px;
+    text-align: right;
+}
+
+/**
+ * utility classes
+ */
+
+.near {
+    float: left;
+}
+
+.far {
+    float: right;
+}

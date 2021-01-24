@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html manifest="app.appcache">
+<head>
+  <meta charset="utf-8">
+  <title>Shop App</title>
+
+  <!-- Sets initial viewport load and disables zooming  -->
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <!-- Makes your prototype chrome-less once bookmarked to your phone's home screen -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  <!-- Set a shorter title for iOS6 devices when saved to home screen -->
+  <meta name="apple-mobile-web-app-title" content="Shop App">
+
+  <!-- Set Apple icons for when prototype is saved to home screen -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="touch-icons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="touch-icons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon-precomposed" sizes="57x57" href="touch-icons/apple-touch-icon-57x57.png">
+
+  <!-- Include the compiled Ratchet CSS -->
+  <link rel="stylesheet" href="dest/app.min.css" />
+
+</head>
+<body>
+
+<!-- Make sure all your bars are the first things in your <body> -->
+<header class="bar-title">
+  <a class="button" data-bind="click: toggleEditMode, visible: shoppingItems().length">
+    <span data-bind="text: isEditMode() ? 'Cancel' : 'Edit'"></span>
+  </a>
+  <h1 class="title">Shop App</h1>
+  <a class="button" data-bind="click: openAddMode, visible: !isEditMode()">
+    Add
+  </a>
+</header>
+
+<!-- Wrap all non-bar HTML in the .content div (this is actually what scrolls) -->
+<div class="content">
+  
+  <ul class="list" data-bind="css: { edit: isEditMode }">
+    <!-- ko foreach: shoppingItems -->
+    <li>
+      <span data-bind="text: name"></span>
+      <span class="edit-inverse count">
+        <span data-bind="text: quantity"></span> x <span data-bind="text: price"></span>
+      </span>
+      <a class="edit-action button-negative" data-bind="click: $parent.removeItem">
+        &times;
+      </a>
+    </li>
+    <!-- /ko -->
+  </ul>
+
+</div>
+
+<div class="total">
+  <h3 class="total-label near">Total :</h3>
+  <h2 class="price far" data-bind="text: totalPrice"></h3>
+</div>
+
+<!-- modals -->
+<div id="addItem" class="modal" data-bind="css: { active: isAddMode }">
+  <header class="bar-title">
+    <a class="button" data-bind="click: function() { isAddMode( false ); }">
+      Cancel
+    </a>
+    <h1 class="title">Add New Item</h1>
+    <a class="button" data-bind="click: addItem">
+      Done
+    </a>
+  </header>
+  
+  <div class="content content-padded">
+    <form data-bind="submit: addItem">
+      <div class="input-group">
+
+        <div class="input-row">
+          <label>Name</label>
+          <input type="text" placeholder="Milk" data-bind="value: tempName">
+        </div>
+        <div class="input-row">
+          <label>Price</label>
+          <input type="number" placeholder="1.0" data-bind="value: tempPrice">
+        </div>
+        <div class="input-row">
+          <label>Quantity</label>
+          <select data-bind="options: tempQuantityList, value: tempQuantity"></select>
+        </div>
+
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="dest/app.min.js"></script>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-46473538-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</body>
+</html>
